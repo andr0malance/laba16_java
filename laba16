@@ -1,0 +1,26 @@
+import java.io.FileReader;
+import java.io.FileWriter;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+
+public class Main {
+    public static void main(String[] args) {
+        try
+            (BufferedReader reader = new BufferedReader(new FileReader("input.txt"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter("output.txt")))
+        {
+            StringBuilder code = new StringBuilder();
+            String TEXT;
+            while ((TEXT = reader.readLine()) != null)
+            {
+                code.append(TEXT).append("\n");
+            }
+            String codeWithoutComments = code.toString().replaceAll("(//.*|/\\*[\\s\\S]*?\\*/)", "");
+            writer.write(codeWithoutComments);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
